@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Register and create a [TokBox account](https://tokbox.com/account/user/signup)
 - Create a new project and save the API key
 - Within the project tools, create and save a sessionID and token   
-- Rename the `config-example.js` to `config.js` and add your TokBox credentials.   
+- Add `config.js`   
 
 ## To start the app:   
 
