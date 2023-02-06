@@ -19,6 +19,7 @@ class Publisher extends React.Component {
   }
 
   setVideo = (video) => {
+    // console.log("video : ", video);
     this.setState({ video });
   }
 
