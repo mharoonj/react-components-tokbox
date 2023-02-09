@@ -1,6 +1,9 @@
 import React from 'react';
-import { OTPublisher } from 'opentok-react';
+import { CameraVideo, CameraVideoOff, Mic, MicMute, Tv, TvFill  } from 'react-bootstrap-icons';
+import { OTPublisher, OTStreams } from 'opentok-react';
 import CheckBox from './CheckBox';
+import { Col, Container, Row } from 'react-bootstrap';
+import Subscriber from './Subscriber';
 
 class Publisher extends React.Component {
   constructor(props) {
@@ -14,13 +17,15 @@ class Publisher extends React.Component {
     };
   }
 
-  setAudio = (audio) => {
-    this.setState({ audio });
+  setAudio = () => {
+    this.setState({ audio: !this.state.audio });
   }
 
-  setVideo = (video) => {
+  setVideo = () => {
     // console.log("video : ", video);
-    this.setState({ video });
+    console.log("video: ", this.state.video)
+    this.setState({ video: !this.state.video });
+
   }
 
   changeVideoSource = (videoSource) => {
@@ -28,24 +33,59 @@ class Publisher extends React.Component {
   }
 
   onError = (err) => {
-    this.setState({ error: `Failed to publish: ${err.message}` });
+    console.log(`Failed to publish: ${err.message}`);
+    this.setState({ videoSource: 'camera' });
   }
 
   render() {
+    console.log("state: ", this.state)
     return (
-      <div className="publisher">
-        Publisher
+      <div className="video-container">
+
+        <div className='caller-container'>
+          <OTPublisher
+            properties={{
+              publishAudio: this.state.audio,
+              publishVideo: this.state.video,
+              videoSource: this.state.videoSource === 'screen' ? 'screen' : undefined
+            }}
+            onError={this.onError}
+          />
+        </div>
+
+
+        <div className="receiver-container">
+          <Container>
+          <OTStreams>
+            <Subscriber />
+          </OTStreams>
+          </Container>
+          
+        </div>
 
         {this.state.error ? <div id="error">{this.state.error}</div> : null}
 
-        <OTPublisher
-          properties={{
-            publishAudio: this.state.audio,
-            publishVideo: this.state.video,
-            videoSource: this.state.videoSource === 'screen' ? 'screen' : undefined
-          }}
-          onError={this.onError}
-        />
+        <Container>
+          <Row>
+            <Col md={{offset: 4, span:1 }} xs={{offset: 3, span:2 }}>
+              <div className='rounded-border' onClick={this.setVideo}>
+                {this.state.video ? <CameraVideo color="royalblue" size={30}/> : <CameraVideoOff color="royalblue" size={30}/>}
+              </div>
+            </Col>
+            <Col md={1} xs={{ span:2 }}>
+              <div className='rounded-border' onClick={this.setAudio}>
+                {this.state.audio ? <Mic color="royalblue" size={30} /> : <MicMute color="royalblue" size={30}/>}
+              </div>
+            </Col>
+            <Col md={1} xs={{ span:2 }}>
+              <div className='rounded-border' onClick={this.changeVideoSource}>
+                {this.state.videoSource === "screen" ? <TvFill color="royalblue" size={30} /> : <Tv color="royalblue" size={30}/>}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+
+        {/* 
 
         <CheckBox
           label="Share Screen"
@@ -62,7 +102,7 @@ class Publisher extends React.Component {
           label="Publish Video"
           initialChecked={this.state.video}
           onChange={this.setVideo}
-        />
+        /> */}
 
       </div>
     );

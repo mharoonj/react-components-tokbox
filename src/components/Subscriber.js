@@ -29,8 +29,6 @@ class Subscriber extends React.Component {
   render() {
     return (
       <div className="subscriber">
-        Subscriber
-
         {this.state.error ? <div id="error">{this.state.error}</div> : null}
 
         <OTSubscriber
@@ -41,7 +39,7 @@ class Subscriber extends React.Component {
           onError={this.onError}
         />
 
-        <CheckBox
+        {/* <CheckBox
           label="Subscribe to Audio"
           initialChecked={this.state.audio}
           onChange={this.setAudio}
@@ -51,7 +49,7 @@ class Subscriber extends React.Component {
           label="Subscribe to Video"
           initialChecked={this.state.video}
           onChange={this.setVideo}
-        />
+        /> */}
         
       </div>
     );
