@@ -33,85 +33,23 @@ class App extends React.Component {
   }
 
   render() {
-    // return (
-    //   <OTSession
-    //     apiKey={this.props.apiKey}
-    //     sessionId={this.props.sessionId}
-    //     token={this.props.token}
-    //     eventHandlers={this.sessionEvents}
-    //     onError={this.onError}
-    //   >
-    //     <Publisher />
-    //   </OTSession>
 
-    // );
-    // return <CallSession />
     return (
-    //   <BrowserRouter>
-    //     <Switch>
-    //     <Route
-    //   // this path will match URLs like
-    //   // - /teams/hotspur
-    //   // - /teams/real
-    //   path="/calls/:number"
-      
-    //   component={
-    //     <CallSession />
-    //   }
-    // />
-    //     </Switch>
-        
-      // </BrowserRouter>
+
       <Router>
       <div>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/users/john">John's Profile</Link>
-            </li>
-            <li>
-              <Link to="/users/jane">Jane's Profile</Link>
-            </li>
-          </ul>
-        </nav> */}
+       
 
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
-        <Route path="/calls/:sessionId/:tokenId" component={CallSession} />
+        <Route path="/calls/:userType/:appointmentId" component={CallSession} />
+        {/* <Route path="/calls/:userType/:appointmentId" component={CallSession} /> */}
       </div>
     </Router>
     );
   }
 }
 
-// <OTSession
-// apiKey={this.props.apiKey}
-// sessionId={this.props.sessionId}
-// token={this.props.token}
-// eventHandlers={this.sessionEvents}
-// onError={this.onError}
-// >
-
-// {this.state.error ? <div id="error">{this.state.error}</div> : null}
-
-// <ConnectionStatus connected={this.state.connected} />
-
-// <Publisher />
-
-// <OTStreams>
-//   <Subscriber />
-// </OTStreams>
-
-// </OTSession>
 
 export default preloadScript(App);

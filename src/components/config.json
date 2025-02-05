@@ -1,0 +1,9 @@
+{
+    "local": {
+      "base_url": "http://localhost:8000"
+    },
+    "production": {
+      "base_url": "https://idoctoraccess.online"
+    }
+  }
+  
