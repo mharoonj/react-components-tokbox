@@ -82,9 +82,9 @@ class CallSession extends React.Component {
           {error ? <div id="error">{error}</div> : null}
           <ConnectionStatus connected={this.state.connected} />
           <Publisher />
-          <OTStreams>
+          {/* <OTStreams>
             <Subscriber />
-          </OTStreams>
+          </OTStreams> */}
         </OTSession>
       </>
     );
